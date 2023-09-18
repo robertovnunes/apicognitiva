@@ -5,7 +5,7 @@ FROM node:14
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the /app directory inside the container
+# Copy package.json package and-lock.json to the /app directory inside the container
 COPY package.json /app
 COPY package-lock.json /app
 
@@ -18,5 +18,5 @@ COPY . /app
 # Expose port 3000 for the application
 EXPOSE 3000
 
-# Run the application using nodemon and app.js as the entry point
-CMD ["nodemon", "app.js"]
+# Run the application using node and app.js as the entry point
+CMD ["node", "app.js"]
