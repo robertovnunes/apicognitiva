@@ -1,9 +1,13 @@
+
 FROM node:18
 
 WORKDIR /app
 
-COPY * /app
+COPY package.json /app
+COPY package-lock.json /app
 
 RUN npm install
+
+COPY . /app
 
 CMD ["nodemon", "app.js"]
