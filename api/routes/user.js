@@ -33,13 +33,13 @@ router.post('/', async (req, res) => {
     const {name, username, email, password} = req.body;
 
     if (!name)
-        return res.status(422).send({error: 'Name cannot be null'});
+        return res.status(422).send({message: 'Name cannot be null'});
     if (!username)
-        return res.status(422).send({error: 'Username cannot be null'});
+        return res.status(422).send({message: 'Username cannot be null'});
     if (!email)
-        return res.status(422).send({error: 'Email cannot be null'});
+        return res.status(422).send({message: 'Email cannot be null'});
     if (!password)
-        return res.status(422).send({error: 'Password cannot be null'});
+        return res.status(422).send({message: 'Password cannot be null'});
 
     const user = {
         name,
@@ -48,10 +48,14 @@ router.post('/', async (req, res) => {
         password,
     }
     try {
-        await User.create(user);
-        res.status(201).json({message: 'User created'});
+        if (!User.findOne({username: username})) {
+            await User.create(user);
+            res.status(201).json({message: 'User created'});
+        } else {
+            res.status(442).send({message: 'User already exists'});
+        }
     } catch (err) {
-        return res.status(442).send({error: 'Registration failed'});
+        return res.status(442).send({message: 'Registration failed'});
     }
 });
 
