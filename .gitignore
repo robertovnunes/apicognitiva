@@ -2,5 +2,5 @@
 /node_modules
 .idea/workspace.xml
 /api/apikey
-.idea/workspace.xml
 api/apikey
+/.vscode/

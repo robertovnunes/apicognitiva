@@ -29,6 +29,22 @@ router.get('/:username', async (req, res) => {
     }
 });
 
+router.get('/:id/de', async (req, res) => {
+    const id = req.params.id;
+    if (!id)
+        return res.status(422).send({message: 'ID cannot be null'});
+    try {
+        const user = await User.findById(id);
+        const de = user.de;
+    } catch (e) {
+        res.status(422).json({message: 'User not found'});
+    }
+});
+
+router.get('/:id/rpd', async (req, res) => {
+
+});
+
 router.post('/', async (req, res) => {
     const {name, username, email, password} = req.body;
 
