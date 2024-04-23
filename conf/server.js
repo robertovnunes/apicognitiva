@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const {urlencoded} = require("express");
 const app = express();
 require('dotenv').config();
 
@@ -16,11 +15,11 @@ app.use(express.json());
 const DB_USER = encodeURIComponent(process.env.DB_USER)
 const DB_PASSWORD = encodeURIComponent(process.env.DB_PASSWORD);
 
-const uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@cognitiva.ycduofb.mongodb.net/?retryWrites=true&w=majority`
+const uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@api.5k2toho.mongodb.net/?retryWrites=true&w=majority&appName=api`
 mongoose.connect(uri)
     .then(() => {
         app.listen(port, () => {
-            console.log(`APICognitiva app listening at http://localhost:${port}`);
+            console.log(`APICognitiva server listening at http://localhost:${port}`);
         });
     })
 
